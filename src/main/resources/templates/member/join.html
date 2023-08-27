@@ -6,6 +6,7 @@
 	href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<div th:replace="~{fragments/header :: header}">Header</div>
 	<div class="container">
 		<form action="/member/join" th:action th:object="${member}" method="post" class="row g-3">
 			<div class="col-md-6">
@@ -35,24 +36,20 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					<!-- <label for="birthYear" class="form-label">Birth</label> -->
 					<input type="text" class="form-control" placeholder="YYYY"
 						aria-label="birthYear" th:field="*{birthYear}">
 				</div>
 				<div class="col">
-					<!-- <label for="birthMonth" class="form-label"></label> -->
 					<input type="text" class="form-control" placeholder="MM"
 						aria-label="Birth Month" th:field="*{birthMonth}">
 				</div>
 				<div class="col">
-					<!-- <label for="birthDay" class="form-label"></label> -->
 					<input type="text" class="form-control" placeholder="DD"
 						aria-label="Birth Day" th:field="*{birthDay}">
 				</div>
 			</div>
 
 			<fieldset class="row g-3">
-				<!-- <legend class="col-form-label col-sm-2 pt-0">Test Radio</legend> -->
 				<div class="col-sm-10">
 					<div class="form-check">
 						<input class="form-check-input" type="radio"
@@ -82,5 +79,6 @@
 			</div>
 		</form>
 	</div>
+	<div th:replace="~{fragments/footer :: footer}">Footer</div>
 </body>
 </html>
