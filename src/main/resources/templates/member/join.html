@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<link th:href="@{/css/bootstrap.min.css}"
+	href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<form action="/member/join" th:action th:object="${member}" method="post" class="row g-3">
+			<div class="col-md-6">
+				<label for="loginId" class="form-label">ID</label>
+				<input type="text" class="form-control" th:field="*{loginId}">
+			</div>
+			<div class="col-md-6">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" class="form-control" th:field="*{password}">
+			</div>
+			<div class="row g-3">
+				<div class="col">
+					<label for="firstName" class="form-label">First Name</label>
+					<input type="text" class="form-control" placeholder="First name"
+						aria-label="First name" th:field="*{firstName}">
+				</div>
+				<div class="col">
+					<label for="lastName" class="form-label">Last Name</label>
+					<input type="text" class="form-control" placeholder="Last name"
+						aria-label="Last name" th:field="*{lastName}">
+				</div>
+			</div>
+			<div class="row g-3">
+				<div class="col">
+					<label class="form-label">Birth</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<!-- <label for="birthYear" class="form-label">Birth</label> -->
+					<input type="text" class="form-control" placeholder="YYYY"
+						aria-label="birthYear" th:field="*{birthYear}">
+				</div>
+				<div class="col">
+					<!-- <label for="birthMonth" class="form-label"></label> -->
+					<input type="text" class="form-control" placeholder="MM"
+						aria-label="Birth Month" th:field="*{birthMonth}">
+				</div>
+				<div class="col">
+					<!-- <label for="birthDay" class="form-label"></label> -->
+					<input type="text" class="form-control" placeholder="DD"
+						aria-label="Birth Day" th:field="*{birthDay}">
+				</div>
+			</div>
+
+			<fieldset class="row g-3">
+				<!-- <legend class="col-form-label col-sm-2 pt-0">Test Radio</legend> -->
+				<div class="col-sm-10">
+					<div class="form-check">
+						<input class="form-check-input" type="radio"
+							th:field="*{testRadio}" value="Y" checked>
+						<label class="form-check-label" for="testRadio1">Y</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio"
+							th:field="*{testRadio}" value="N">
+						<label class="form-check-label" for="testRadio2">N</label>
+					</div>
+				</div>
+			</fieldset>
+			<div class="rows g-3">
+				<div class="col-sm-10">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox"
+							th:field="*{testCheck}" value="Y">
+						<label class="form-check-label" for="testCheck">Check me</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary">Sign in</button>
+				<button type="button" class="btn btn-secondary" th:onclick="|location.href='@({/})'|">Backs</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
