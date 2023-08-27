@@ -6,6 +6,7 @@
 	href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<div th:replace="~{fragments/header :: header}">Header</div>
 	<div class="container">
 		<form action="/member/join" th:action th:object="${member}" method="post" class="row g-3">
 			<div class="col-md-6">
@@ -82,5 +83,6 @@
 			</div>
 		</form>
 	</div>
+	<div th:replace="~{fragments/footer :: footer}">Footer</div>
 </body>
 </html>

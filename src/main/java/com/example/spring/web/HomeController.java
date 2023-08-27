@@ -24,10 +24,10 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(@Login MemberDto loginMember, Model model) {
 		if(loginMember == null) {
-			return "/home";
+			return "home";
 		}
 		model.addAttribute("member", loginMember);
-		return "/loginHome";
+		return "loginHome";
 	}
 
 	/**
@@ -39,6 +39,6 @@ public class HomeController {
 	@GetMapping("/login")
 	public String login(@ModelAttribute("login") LoginDto loginDto, Model model) {
 		model.addAttribute("login", loginDto);
-		return "/login";
+		return "login";
 	}
 }
