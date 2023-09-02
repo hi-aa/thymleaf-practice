@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Value;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
