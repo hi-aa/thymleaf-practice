@@ -8,6 +8,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.spring.member.MemberUpdateDto;
+
 @Repository
 public class MemberRepository {
 
@@ -50,5 +52,22 @@ public class MemberRepository {
 	 */
 	public List<MemberDto> getAllMembers() {
 		return new ArrayList<>(store.values());
+	}
+
+	/**
+	 * update member
+	 * @param id
+	 * @param member
+	 * @return
+	 */
+	public MemberDto updateMember(long id, MemberUpdateDto updateMember) throws IllegalArgumentException {
+		if(this.getMemberById(id) == null) {
+			throw new IllegalArgumentException("멤버 정보가 존재하지 않습니다.");
+		}
+
+		MemberDto member = new MemberDto(updateMember);
+		member.setId(id);
+		store.put(id, member);
+		return member;
 	}
 }

@@ -3,8 +3,11 @@
 <body>
 	<div th:replace="~{fragments/header :: header}">Header</div>
 	<div class="container">
-		hello
-		<span th:text="|${session.loginMember.firstName} ${session.loginMember.lastName}|"></span>
+		<h2>500</h2>
+		<div th:if="${#fields.hasGlobalErrors()}">
+				<p class="field-error" th:each="err: ${#fields.globalErrors()}"
+						th:text="${err}">전체 오류 메시지</p>
+			</div>
 	</div>
 	<div th:replace="~{fragments/footer :: footer}">Footer</div>
 </body>
