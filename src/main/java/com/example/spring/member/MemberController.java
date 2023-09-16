@@ -1,11 +1,14 @@
 package com.example.spring.member;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.spring.config.Login;
 import com.example.spring.login.dto.MemberDto;
 import com.example.spring.login.dto.MemberRepository;
 
@@ -36,5 +39,46 @@ public class MemberController {
 	public String memberJoin(@ModelAttribute(name = "member") @Validated @NotNull MemberDto memberDto) {
 		memberRepository.save(memberDto);
 		return "redirect:/";
+	}
+
+	/**
+	 * 프로필 화면
+	 * @param loginMember
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/member/profile")
+	public String memberProfilePage(@Login MemberDto loginMember, Model model) {
+		model.addAttribute("profile", loginMember);
+		return "member/profile";
+	}
+
+	/**
+	 * 프로필 업데이트
+	 * @param loginMember
+	 * @param profile
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/member/profile")
+	public String memberProfileUpdate(@Login MemberDto loginMember, @ModelAttribute(name = "profile") @Validated MemberUpdateDto profile
+			, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			return "/member/profile";
+		}
+
+		MemberDto updateMember = memberRepository.getMemberByLoginId(profile.getLoginId()).get();
+		if(updateMember == null || updateMember.getId() != loginMember.getId()) {
+//			bindingResult.rejectValue("id", "유효하지 않은 멤버 정보");
+			throw new IllegalArgumentException("유효하지 않은 멤버 정보");
+//			return "/member/profile";
+		}
+
+		// update
+		memberRepository.updateMember(updateMember.getId(), profile);
+		model.addAttribute("profile", profile);
+
+		return "redirect:/member/profile";
 	}
 }
