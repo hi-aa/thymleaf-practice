@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.spring.config.Login;
 import com.example.spring.login.LoginConst;
-import com.example.spring.login.dto.MemberDto;
-import com.example.spring.login.dto.MemberRepository;
+import com.example.spring.member.dto.MemberDto;
+import com.example.spring.member.dto.MemberUpdateDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 회원정보 관련 작업
+ * @author : hi-aa
+ * @date   : 2023-09-21
+ */
 @Controller
 @RequiredArgsConstructor
 public class MemberController {

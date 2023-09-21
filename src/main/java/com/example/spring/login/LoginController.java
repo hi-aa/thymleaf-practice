@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.spring.login.dto.LoginDto;
-import com.example.spring.login.dto.MemberDto;
+import com.example.spring.member.dto.MemberDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
