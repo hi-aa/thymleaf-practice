@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.spring.config.Login;
 import com.example.spring.login.dto.LoginDto;
-import com.example.spring.login.dto.MemberDto;
+import com.example.spring.member.dto.MemberDto;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 기본 화면이동
+ * @author : hi-aa
+ * @date   : 2023-09-21
+ */
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
@@ -26,7 +31,6 @@ public class HomeController {
 		if(loginMember == null) {
 			return "home";
 		}
-//		model.addAttribute("member", loginMember);
 		return "loginHome";
 	}
 

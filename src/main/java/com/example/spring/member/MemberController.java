@@ -9,12 +9,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.spring.config.Login;
-import com.example.spring.login.dto.MemberDto;
-import com.example.spring.login.dto.MemberRepository;
+import com.example.spring.login.LoginConst;
+import com.example.spring.member.dto.MemberDto;
+import com.example.spring.member.dto.MemberUpdateDto;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 회원정보 관련 작업
+ * @author : hi-aa
+ * @date   : 2023-09-21
+ */
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -62,22 +70,25 @@ public class MemberController {
 	 * @return
 	 */
 	@PostMapping("/member/profile")
-	public String memberProfileUpdate(@Login MemberDto loginMember, @ModelAttribute(name = "profile") @Validated MemberUpdateDto profile
-			, BindingResult bindingResult, Model model) {
+	public String memberProfileUpdate(@Login MemberDto loginMember
+			, @ModelAttribute(name = "profile") @Validated MemberUpdateDto profile
+			, BindingResult bindingResult
+			, HttpServletRequest request
+			, Model model) {
 		if(bindingResult.hasErrors()) {
 			return "/member/profile";
 		}
 
-		MemberDto updateMember = memberRepository.getMemberByLoginId(profile.getLoginId()).get();
-		if(updateMember == null || updateMember.getId() != loginMember.getId()) {
-//			bindingResult.rejectValue("id", "유효하지 않은 멤버 정보");
+		MemberDto checkMemberId = memberRepository.getMemberByLoginId(profile.getLoginId()).get();
+		if(checkMemberId == null || checkMemberId.getId() != loginMember.getId()) {
 			throw new IllegalArgumentException("유효하지 않은 멤버 정보");
-//			return "/member/profile";
 		}
 
 		// update
-		memberRepository.updateMember(updateMember.getId(), profile);
-		model.addAttribute("profile", profile);
+		MemberDto resMember = memberRepository.updateMember(checkMemberId.getId(), profile);
+
+		HttpSession session = request.getSession();
+		session.setAttribute(LoginConst.LOGIN_MEMBER, resMember);
 
 		return "redirect:/member/profile";
 	}

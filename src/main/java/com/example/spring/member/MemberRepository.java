@@ -1,4 +1,4 @@
-package com.example.spring.login.dto;
+package com.example.spring.member;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,8 +8,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.example.spring.member.MemberUpdateDto;
+import com.example.spring.member.dto.MemberDto;
+import com.example.spring.member.dto.MemberUpdateDto;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class MemberRepository {
 

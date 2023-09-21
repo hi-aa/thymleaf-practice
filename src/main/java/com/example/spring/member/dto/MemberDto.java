@@ -1,4 +1,4 @@
-package com.example.spring.member;
+package com.example.spring.member.dto;
 
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,12 +7,20 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class MemberUpdateDto {
+//@Data
+@Getter
+@Setter
+public class MemberDto {
+
+	private long id;
+
 	@NotBlank
 	private String loginId;
 
+	@NotBlank
 	private String password;
 
 	@NotBlank
@@ -40,4 +48,20 @@ public class MemberUpdateDto {
 	@Value(value = "Y")
 	@Pattern(regexp = "^[YN]$")
 	private String testCheck;
+
+	public MemberDto() {
+	}
+
+	public MemberDto(MemberUpdateDto updateMember) {
+		this.loginId = updateMember.getLoginId();
+		this.password = updateMember.getPassword();
+		this.firstName = updateMember.getFirstName();
+		this.lastName = updateMember.getLastName();
+		this.birthYear = updateMember.getBirthYear();
+		this.birthMonth = updateMember.getBirthMonth();
+		this.birthDay = updateMember.getBirthDay();
+		this.testRadio = updateMember.getTestRadio();
+		this.testCheck = updateMember.getTestCheck();
+	}
+
 }
