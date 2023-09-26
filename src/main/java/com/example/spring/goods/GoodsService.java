@@ -17,4 +17,8 @@ public class GoodsService {
 	public List<GoodsDto> getAllGoods() {
 		return goodsRepository.getAllGoods();
 	}
+
+	public GoodsDto getGoodsById(long goodsId) {
+		return goodsRepository.getGoodsById(goodsId);
+	}
 }

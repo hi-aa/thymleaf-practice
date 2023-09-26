@@ -5,23 +5,20 @@
 
 	<script th:inline="javascript">
 		$(document).ready(function() {
-			$("input[name^='birth'").keyup(function() {
-				const value = $(this).val().replace(/[^0-9.]/g, '');
-				$(this).val(value);
-			});
+
 		});
 	</script>
 	<div class="container">
-		<form th:action="@{/member/profile}" th:object="${profile}" method="post" class="row g-3">
+		<form th:action="@{/goods/save}" th:object="${goods}" method="post" class="row g-3">
 			<div class="col-md-6">
 				<label for="loginId" class="form-label">ID</label>
-				<input type="text" class="form-control" th:field="*{loginId}" readonly="readonly">
+				<input type="text" class="form-control" th:field="*{goodsId}" readonly="readonly">
 			</div>
 			<div class="col-md-6">
-				<label for="password" class="form-label">Password</label>
-				<input type="password" class="form-control" th:field="*{password}" readonly="readonly">
+				<!-- <label for="password" class="form-label">Password</label>
+				<input type="password" class="form-control" th:field="*{password}" readonly="readonly"> -->
 			</div>
-			<div class="row g-3">
+			<!-- <div class="row g-3">
 				<div class="col">
 					<label for="firstName" class="form-label">First Name</label>
 					<input type="text" class="form-control" placeholder="First name"
@@ -83,7 +80,7 @@
 						<label class="form-check-label" for="testCheck">Check me</label>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 			<div th:if="${#fields.hasGlobalErrors()}">
 				<p class="field-error" th:each="err: ${#fields.globalErrors()}"

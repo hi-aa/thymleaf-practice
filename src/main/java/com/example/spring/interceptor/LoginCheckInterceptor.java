@@ -19,8 +19,9 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
 		String requestURI = request.getRequestURI();
 		HttpSession session = request.getSession();
+		log.info("[preHandle] url={}", requestURI);
 		if(session == null || session.getAttribute(LoginConst.LOGIN_MEMBER) == null) {
-			log.info("미인증 사용자 요청={}", requestURI);
+			log.info("미인증 사용자");
 			response.sendRedirect("/login?redirectURL=" + requestURI);
 			return false;
 		}

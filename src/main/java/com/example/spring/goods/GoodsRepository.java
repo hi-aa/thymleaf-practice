@@ -32,7 +32,20 @@ public class GoodsRepository {
 		return list;
 	}
 
-	// TODO : 단일 조회
+	/**
+	 * 단일조회
+	 * @author : hi-aa
+	 * @date   : 2023-09-26
+	 * @param goodsId
+	 * @return
+	 */
+	public GoodsDto getGoodsById(long goodsId) {
+		GoodsDto res = store.get(goodsId);
+		if(res == null || "N".equals(res.getUseYn())) {
+			return null;
+		}
+		return res;
+	}
 
 	/**
 	 * 저장

@@ -2,27 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 	<div th:replace="~{fragments/header :: header}">Header</div>
+
 	<div class="container">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">상태</th>
 					<th scope="col">ID</th>
 					<th scope="col">상품명</th>
 					<th scope="col">비고</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="goods : ${goodsList}">
-					<td>
-						<!-- <input class="form-check-input" type="checkbox" name="checkRow"
-							th:value="${goods.goodsId}"> -->
-					</td>
+				<tr th:each="goods : ${goodsList}" th:onclick="|location.href='@{/goods/{id}(id = ${goods.goodsId})}'|">
 					<td th:text="${goods.goodsId}"></td>
 					<td th:text="${goods.goodsNm}"></td>
-					<td>
-						<input type="text" th:value="${goods.desc}" name="desc" readonly="readonly">
-					</td>
+					<td th:text="${goods.desc}"></td>
 				</tr>
 			</tbody>
 		</table>
